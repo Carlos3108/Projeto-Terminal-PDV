@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -27,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public void validate(String cpf, String password) {
         TextView texto = findViewById(R.id.textView);
-        if (cpf.equals("admin") && password.equals("admin")){
-            Intent intent = new Intent(MainActivity.this, Mesa.class);
+        if (cpf.toLowerCase(Locale.ROOT).equals("admin") && password.equals("admin")){
+            Intent intent = new Intent(MainActivity.this, Comanda.class);
             startActivity(intent);
         } else {
-            texto.setText("Erro");
+            texto.setText("CPF ou Senha invalidos!");
         }
     }
 }
