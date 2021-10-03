@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.testecomanda">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo_hsb"
@@ -9,6 +10,9 @@
         android:roundIcon="@mipmap/logo_hsb"
         android:supportsRtl="true"
         android:theme="@style/Theme.TesteComanda">
+        <activity
+            android:name=".Menu"
+            android:exported="true" />
         <activity
             android:name=".Mesa"
             android:exported="true" />

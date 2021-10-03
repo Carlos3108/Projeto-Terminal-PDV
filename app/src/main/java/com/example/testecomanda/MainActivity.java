@@ -1,6 +1,5 @@
 package com.example.testecomanda;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public void validate(String cpf, String password) {
         TextView texto = findViewById(R.id.textView);
         if (cpf.toLowerCase(Locale.ROOT).equals("admin") && password.equals("admin")){
-            Intent intent = new Intent(MainActivity.this, Comanda.class);
+            Intent intent = new Intent(MainActivity.this, Menu.class);
             startActivity(intent);
         } else {
             texto.setText("CPF ou Senha invalidos!");
