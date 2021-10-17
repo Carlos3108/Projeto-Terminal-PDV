@@ -9,12 +9,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo_hsb"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TesteComanda">
+        android:theme="@style/Theme.TesteComanda"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".Menu"
-            android:exported="true" />
-        <activity
-            android:name=".Mesa"
             android:exported="true" />
         <activity
             android:name=".Comanda"

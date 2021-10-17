@@ -13,15 +13,18 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        Button btsair = findViewById(R.id.exit);
         Button additem = findViewById(R.id.additem);
+
         additem.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 Intent intent = new Intent(Menu.this, Comanda.class);
                 startActivity(intent);
             }
         });
-        Button exit = findViewById(R.id.exit);
-        exit.setOnClickListener(new View.OnClickListener(){
+
+        btsair.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view){
                 Intent intent = new Intent(Menu.this, MainActivity.class);
                 startActivity(intent);

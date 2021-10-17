@@ -23,20 +23,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView cpf = findViewById(R.id.textCpfLogin);
+        TextView user = findViewById(R.id.textCpfLogin);
         TextView password = findViewById(R.id.textPassword);
         Button login = findViewById(R.id.buttonLogin);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                obterUsuario(cpf.getText().toString(), password.getText().toString());
+                obterUsuario(user.getText().toString(), password.getText().toString());
 
             }
         });
     }
-       public void validate(String login, String password,String senha) {
+       public void validate(String password,String senha) {
         TextView texto = findViewById(R.id.textView);
-        if(login.equals(login)&&password.equals(senha)){
+        if(password.equals(senha)){
             Intent intent = new Intent(MainActivity.this, Menu.class);
             startActivity(intent);
            }
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public void obterUsuario(String login,String password){
         TextView texto = findViewById(R.id.textView);
         RequestQueue queue = Volley.newRequestQueue(this);
-        String URL = "https://kind-puma-61.loca.lt/usuario/"+login;
+        String URL = "http://31.220.21.132:5000/usuario/"+login;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
                     @Override
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                         try{
                             String senha = response.getString("senha").toString();
                             System.out.println(senha);
-                            validate(login, password, senha);
+                            validate(password, senha);
                         }catch(JSONException error){
                             texto.setText("Login ou Senha invalidos!");
                         }
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        texto.setText("Login ou Senha invalidos!");
+                        texto.setText("Login ou Senhas incorretas");
                     }
                 });
         queue.add(jsonObjectRequest);
