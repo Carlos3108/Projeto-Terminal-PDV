@@ -34,10 +34,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-       public void validate(String password,String senha) {
+       public void validate(String password,String senha, String id) {
         TextView texto = findViewById(R.id.textView);
         if(password.equals(senha)){
             Intent intent = new Intent(MainActivity.this, Menu.class);
+            intent.putExtra("ID", id);
             startActivity(intent);
            }
         else {
@@ -54,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try{
                             String senha = response.getString("senha").toString();
+                            String id = response.getString("id").toString();
                             System.out.println(senha);
-                            validate(password, senha);
+                            validate(password, senha,id);
                         }catch(JSONException error){
                             texto.setText("Login ou Senha invalidos!");
                         }

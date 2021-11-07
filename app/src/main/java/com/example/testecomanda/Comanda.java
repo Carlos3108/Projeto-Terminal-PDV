@@ -41,14 +41,15 @@ public class Comanda extends AppCompatActivity {
         TextView codigoComanda = findViewById(R.id.codigoComanda);
         TextView codigoProduto = findViewById(R.id.codigoProduto);
         TextView quantidadeProdutos = findViewById(R.id.quantidadeProdutos);
-
-
+        String sessionId= getIntent().getStringExtra("id_vendedor");
+        System.out.println(sessionId);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 inputComanda(codigoComanda.getText().toString(),
                         codigoProduto.getText().toString(),
-                        quantidadeProdutos.getText().toString());
+                        quantidadeProdutos.getText().toString(),
+                        sessionId);
             }
         });
         btVoltar.setOnClickListener(new View.OnClickListener() {
@@ -64,13 +65,14 @@ public class Comanda extends AppCompatActivity {
         Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();
     };
 
-    public void inputComanda(String codComanda, String codProduto, String qtdProd) {
+    public void inputComanda(String codComanda, String codProduto, String qtdProd,String sessionId) {
         RequestQueue queue = Volley.newRequestQueue(this);
         final String URL = "http://31.220.21.132:5000/comanda/"+codComanda;
         final String VerificProd = "http://31.220.21.132:5000/produto/"+codProduto;
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("codprod", codProduto);
         params.put("qtde", qtdProd);
+        params.put("id_vendedor", sessionId);
 
         JsonObjectRequest request_json = new JsonObjectRequest(URL, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
